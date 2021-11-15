@@ -5,11 +5,12 @@ const getTokens = async (req, res) => {
     const body = req.body;
     try {
       const resBackend = await axios.post(
-        `${Constant.BACKEND_DOMAIN}/authentication/login`
-      );
+        `${Constant.BACKEND_DOMAIN}/authentication/login`, body
+      );      
       res.send(resBackend.data);
     } catch (err) {
-      res.send(err?.response?.data || {});
+      console.log(err?.response?.data);
+      res.send(err.response.data || {});
     }
   };
   
